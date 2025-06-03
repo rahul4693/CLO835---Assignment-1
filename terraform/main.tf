@@ -19,8 +19,8 @@ resource "aws_key_pair" "assignment_key" {
 resource "aws_instance" "ec2" {
   ami           = "ami-0953476d60561c955" # Amazon Linux 2
   instance_type = "t2.micro"
-  key_name      = "assignment1-key" 
-  subnet_id     = "subnet-02e9d21f4c27e20f9"         # Replace with default VPC public subnet ID
+  key_name = aws_key_pair.assignment_key.key_name
+  subnet_id     = "subnet-06735d781ea6842ef"         # Replace with default VPC public subnet ID
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   tags = { Name = "Assignment1-EC2" }
 }
